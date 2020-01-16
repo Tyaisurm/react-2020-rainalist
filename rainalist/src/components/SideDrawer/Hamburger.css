@@ -1,0 +1,9 @@
+.hamburger {
+    font-size: 1.5rem;
+    color: rgba(255, 253, 247, 1);
+    cursor: pointer;
+}
+
+.hamburger:focus {
+    outline: none;
+}
