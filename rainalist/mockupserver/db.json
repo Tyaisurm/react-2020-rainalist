@@ -1,1 +1,29 @@
-{}
+{
+  "users": [
+    {
+      "uuid": 12345,
+      "name": "John Doe",
+      "location": "US",
+      "joined": "2020-01-23T04:32:11.325Z",
+      "gender": "0"
+    }
+  ],
+  "lists": [
+    {
+      "uuid": 12345,
+      "master": [
+        {
+          "tmdb_id": 157336,
+          "original_title": "Interstellar",
+          "poster_url": "/xu9zaAevzQ5nnrsXN6JcahLnG4i.jpg",
+          "status": 1,
+          "episodeCount": 1,
+          "seasonCount": 1,
+          "episode": 0,
+          "season": 0,
+          "type": 0
+        }
+      ]
+    }
+  ]
+}

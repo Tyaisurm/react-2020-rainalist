@@ -1,12 +1,11 @@
 import React from "react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import "./DrawerToggleButton.css";
 
 const drawerToggleButton = props => (
   <button className="toggle-button" onClick={props.click}>
-    <div className="toggle-button__line" />
-    <div className="toggle-button__line" />
-    <div className="toggle-button__line" />
+    <FontAwesomeIcon icon={faBars} color="white" size="2x" />
   </button>
 );
 

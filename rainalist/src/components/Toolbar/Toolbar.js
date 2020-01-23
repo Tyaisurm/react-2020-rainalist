@@ -1,6 +1,8 @@
 import React from "react";
-
-import DrawerToggleButton from "../SideDrawer/DrawerToggleButton";
+import { Link } from "react-router-dom";
+import DrawerToggleButton from "./DrawerToggleButton";
+import SearchBarToggleButton from "./SearchBarToggleButton";
+import ShowProfileButton from "./ShowProfileButton.js";
 import "./Toolbar.css";
 
 const toolbar = props => (
@@ -10,15 +12,18 @@ const toolbar = props => (
         <DrawerToggleButton click={props.drawerClickHandler} />
       </div>
       <div className="toolbar__logo">
-        <a href="/">THE LOGO</a>
+        <a href="/">RAINALIST</a>
       </div>
       <div className="toolbar__navigation-items">
         <ul>
           <li>
-            <a href="/">Products</a>
+            <SearchBarToggleButton
+              searchBarOpen={props.searchShow}
+              click={props.searchBarToggleClickHandler}
+            />
           </li>
           <li>
-            <a href="/">Users</a>
+            <ShowProfileButton click={props.showProfileButtonClickHandler} />
           </li>
         </ul>
       </div>

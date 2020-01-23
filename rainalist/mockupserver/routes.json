@@ -1,0 +1,5 @@
+{
+  "/api/user/:id": "/api/users?uuid=:id",
+  "/api/user/:id/profile": "/api/users?uuid=:id",
+  "/api/user/:id/lists": "/api/lists?uuid=:id"
+}
