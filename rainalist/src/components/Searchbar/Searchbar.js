@@ -21,8 +21,12 @@ class Searchbar extends Component {
     }
     return (
       <div className={searchbarClasses}>
-        <SearchSelect selectHandler={this.selectHandler} />
-        <SearchBox show={this.props.show} mode={this.state.mode} />
+        <div>
+          <SearchSelect selectHandler={this.selectHandler} />
+        </div>
+        <div>
+          <SearchBox show={this.props.show} mode={this.state.mode} />
+        </div>
       </div>
     );
   }

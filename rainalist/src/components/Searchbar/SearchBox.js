@@ -1,11 +1,14 @@
 import React, { Component } from "react";
+import "./SearchBox.css";
+import "react-bootstrap-typeahead/css/Typeahead.css";
+import "react-bootstrap-typeahead/css/Typeahead-bs4.css";
 import {
   asyncContainer,
   Typeahead,
   Menu,
-  MenuItem
+  MenuItem,
+  menuItemContainer
 } from "react-bootstrap-typeahead";
-import "./SearchBox.css";
 const ComModule = require("../../modules/Communication");
 const AsyncTypeahead = asyncContainer(Typeahead);
 
@@ -30,40 +33,45 @@ class SearchBox extends Component {
       let apiURLtemp = ComModule.getSearchAPI();
       this.setState({ apiURL: apiURLtemp[0] });
     }
-    if (!this.props.show) {
-    }
+    const TypeaheadMenuItem = menuItemContainer(MenuItem);
     return (
       <div className={"z-89"}>
         <AsyncTypeahead
-          allowNew={false}
-          isLoading={false}
-          multiple={false}
+          isLoading={this.state.isLoading}
           minLength={2}
+          maxResults={9}
+          paginate
           options={this.state.options}
           isLoading={this.state.isLoading}
           onSearch={this._handleSearch}
+          useCache={true}
           placeholder="Search by name..."
-          labelKey={option => `${option.name} (${option.original_name})`}
-          renderMenu={(results, menuProps) => (
-            <Menu {...menuProps}>
-              {results.map((result, index) => (
-                <MenuItem option={result.id} position={index}>
-                  {result.name}
-                </MenuItem>
-              ))}
-            </Menu>
+          searchText="Searching..."
+          emptyLabel="No results :c"
+          ignoreDiacritics={true}
+          clearButton={true}
+          disabled={!this.props.show}
+          labelKey={result => `${result.name} (${result.original_name})`}
+          renderMenuItemChildren={option => (
+            <div>
+              {option.name}
+              <div>
+                <small>
+                  Alt name: <span>{option.original_name}</span>
+                </small>
+              </div>
+            </div>
           )}
-          ref={ref => (this._typeahead = ref)}
         />
       </div>
     );
   }
-
   _handleSearch = query => {
     this.setState({ isLoading: true });
     fetch(`${this.state.apiURL}${query}`)
       .then(resp => resp.json())
       .then(json => {
+        console.log(json.results);
         this.setState({
           isLoading: false,
           options: json.results
